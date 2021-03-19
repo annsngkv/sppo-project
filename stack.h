@@ -67,4 +67,21 @@ Stack<T>::~Stack()
     stack = NULL;
 }
 
+/*
+ * функция добавления элемента в стэк, которая в случае добавления элемента в полный стэк
+ * будет генеририровать исключение типа EStackOverflow
+ *
+ * argument: T* (указатель на объект)
+*/
+template <class T>
+void Stack<T>::push(T* obj)
+{
+    if (topIdx >= maxSize) {
+        throw exc::EStackOverflow("Ошибка: cтек переполнен"); // генерируем исключение типа EStackOverflow, если стэк переполнен
+    }
+
+    stack[topIdx] = obj;
+    topIdx++;
+}
+
 #endif // STACK_H
