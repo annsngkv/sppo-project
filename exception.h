@@ -64,6 +64,27 @@ namespace exc {
             */
             EStackEmpty(const  EStackEmpty& arg) : EStackException(arg) {}
     };
+
+    /*
+     * наследуемся от класса EStackException
+    */
+    class EStackOverflow : public EStackException
+    {
+        public:
+
+            /*
+             * конструктор с параметром класса EStackOverflow вызывает конструктор с параметром класса EStackException
+             * и передает в него arg
+             *
+             * argument: char*
+            */
+            explicit EStackOverflow(const char* arg) : EStackException(arg) {}
+
+            /*
+             * конструктор копирования класса EStackOverflow вызывает конструктор копирования класса EStackException
+            */
+            EStackOverflow(const  EStackOverflow& arg) : EStackException(arg) {}
+    };
 }
 
 #endif // EXCEPTION_H
