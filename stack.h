@@ -76,7 +76,7 @@ Stack<T>::~Stack()
 template <class T>
 void Stack<T>::push(T* obj)
 {
-    if (topIdx >= max_size) {
+    if (top_idx >= max_size) {
         throw exc::EStackOverflow("Ошибка: cтек переполнен"); // генерируем исключение типа EStackOverflow, если стэк переполнен
     }
 
