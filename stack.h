@@ -102,4 +102,15 @@ T* Stack<T>::pop()
      return stack[top_idx];
 }
 
+/*
+ * функция, возвращающая размерность стэка
+ *
+ * return: int
+*/
+template <class T>
+int Stack<T>::getStackSize()
+{
+    return max_size;
+}
+
 #endif // STACK_H
