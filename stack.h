@@ -84,4 +84,22 @@ void Stack<T>::push(T* obj)
     topIdx++;
 }
 
+/*
+ * функция извлечения элемента из стэка, которая в случае попытки извлечь элемент из пустого стэка
+ * будет генеририровать исключение типа EStackEmpty
+ *
+ * return: T* (указатель на объект)
+*/
+template <class T>
+T* Stack<T>::pop()
+{
+     topIdx--;
+
+     if (topIdx < 0) {
+         throw exc::EStackEmpty("Ошибка: cтек пуст"); // генерируем исключение типа EStackEmpty, если стэк пуст
+     }
+
+     return stack[topIdx];
+}
+
 #endif // STACK_H
