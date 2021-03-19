@@ -43,6 +43,27 @@ namespace exc {
     {
         delete message;
     }
+
+    /*
+     * наследуемся от класса EStackException
+    */
+    class EStackEmpty : public EStackException
+    {
+        public:
+
+            /*
+             * конструктор с параметром класса EStackEmpty вызывает конструктор с параметром класса EStackException
+             * и передает в него arg
+             *
+             * argument: char*
+            */
+            explicit EStackEmpty(const char* arg) : EStackException(arg) {}
+
+            /*
+             * конструктор копирования класса EStackEmpty вызывает конструктор копирования класса EStackException
+            */
+            EStackEmpty(const  EStackEmpty& arg) : EStackException(arg) {}
+    };
 }
 
 #endif // EXCEPTION_H
