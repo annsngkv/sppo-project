@@ -76,12 +76,12 @@ Stack<T>::~Stack()
 template <class T>
 void Stack<T>::push(T* obj)
 {
-    if (topIdx >= maxSize) {
+    if (topIdx >= max_size) {
         throw exc::EStackOverflow("Ошибка: cтек переполнен"); // генерируем исключение типа EStackOverflow, если стэк переполнен
     }
 
-    stack[topIdx] = obj;
-    topIdx++;
+    stack[top_idx] = obj;
+    top_idx++;
 }
 
 /*
@@ -93,13 +93,13 @@ void Stack<T>::push(T* obj)
 template <class T>
 T* Stack<T>::pop()
 {
-     topIdx--;
+     top_idx--;
 
-     if (topIdx < 0) {
+     if (top_idx < 0) {
          throw exc::EStackEmpty("Ошибка: cтек пуст"); // генерируем исключение типа EStackEmpty, если стэк пуст
      }
 
-     return stack[topIdx];
+     return stack[top_idx];
 }
 
 #endif // STACK_H
