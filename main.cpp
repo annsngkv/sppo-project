@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
             std::cout << "Стэк вернул: " << stack.pop() << std::endl;
         }
     } catch (const exc::EStackEmpty& e) {// ловим все исключения типа EStackEmpty
+        drawSeparatorLine();
         std::cout << e.what() << std::endl; // обработка исключений
         drawSeparatorLine();
     }
