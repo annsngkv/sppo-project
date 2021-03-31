@@ -24,4 +24,5 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 HEADERS += \
     exception.h \
-    stack.h
+    stack.h \
+    person.h
