@@ -2,62 +2,58 @@
 #define EXCEPTION_H
 
 namespace exc {
-    #include <string.h>
-
     class EStackException
     {
         private:
-            char* message; //диагностическое сообщение
+            /* Диагностическое сообщение */
+            std::string message; //
 
         public:
-            EStackException(const char* arg_message); //конструктор с параметрами
-            EStackException(const EStackException& arg); //конструктор копирования
-            ~EStackException(); //деструктор
-            const char* what() const { return message;} //функция вывода диагастического сообщения
+            /* Конструктор с параметрами */
+            EStackException(const std::string& arg_message);
+
+            /* Конструктор копирования */
+            EStackException(const EStackException& arg);
+
+            /* Деструктор */
+            ~EStackException() {;}
+
+            /* Функция вывода диагастического сообщения */
+            const std::string& what() const { return message;}
     };
 
     /*
-     * конструктор с параметром класса EStackException
-     * argument: char*
+     * Конструктор с параметром класса EStackException
+     *
+     * arg const string&
     */
-    EStackException::EStackException(const char* arg_message)
+    EStackException::EStackException(const std::string& arg_message)
     {
-        message = new char[strlen(arg_message)+1];
-
-        strcpy(message, arg_message);
+        message = arg_message;
     }
 
     /*
-     * конструктор копирования класса EStackException
+     * Конструктор копирования класса EStackException
     */
     EStackException::EStackException(const EStackException& arg)
     {
-        message = new char[strlen(arg.message)+1];
-        strcpy(message, arg.message);
+        message = arg.message;
     }
 
     /*
-     * деструктор класса EStackException
-    */
-    EStackException::~EStackException()
-    {
-        delete message;
-    }
-
-    /*
-     * наследуемся от класса EStackException
+     * Наследование от класса EStackException
     */
     class EStackEmpty : public EStackException
     {
         public:
 
             /*
-             * конструктор с параметром класса EStackEmpty вызывает конструктор с параметром класса EStackException
+             * Конструктор с параметром класса EStackEmpty вызывает конструктор с параметром класса EStackException
              * и передает в него arg
              *
-             * argument: char*
+             * arg const string&
             */
-            explicit EStackEmpty(const char* arg) : EStackException(arg) {}
+            explicit EStackEmpty(const std::string arg) : EStackException(arg) {}
 
             /*
              * конструктор копирования класса EStackEmpty вызывает конструктор копирования класса EStackException
@@ -66,22 +62,22 @@ namespace exc {
     };
 
     /*
-     * наследуемся от класса EStackException
+     * Наследование от класса EStackException
     */
     class EStackOverflow : public EStackException
     {
         public:
 
             /*
-             * конструктор с параметром класса EStackOverflow вызывает конструктор с параметром класса EStackException
+             * Конструктор с параметром класса EStackOverflow вызывает конструктор с параметром класса EStackException
              * и передает в него arg
              *
-             * argument: char*
+             * arg const string&
             */
-            explicit EStackOverflow(const char* arg) : EStackException(arg) {}
+            explicit EStackOverflow(const std::string& arg) : EStackException(arg) {}
 
             /*
-             * конструктор копирования класса EStackOverflow вызывает конструктор копирования класса EStackException
+             * Конструктор копирования класса EStackOverflow вызывает конструктор копирования класса EStackException
             */
             EStackOverflow(const  EStackOverflow& arg) : EStackException(arg) {}
     };
