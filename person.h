@@ -5,22 +5,49 @@ class Person
 
 {
     private:
-        long key;//id человека
-        std::string last_name;//фамилия
-        std::string first_name;//имя
-        std::string second_name;//отчество
+        /* Id человека */
+        long key;
+
+        /* Фамилия */
+        std::string last_name;
+
+        /* Имя */
+
+        std::string first_name;
+
+        /* Отчество */
+        std::string second_name;
 
     public:
-        Person();//конструктор класса по умолчанию
-        Person(long key, const std::string&, const std::string&, const std::string&);//конструктор класса с параметрами
-        ~Person();//деструктор класса
-        Person(const Person&);//конструктор копирования
-        const std::string& getLastName() const { return last_name; }//функция получения фамилии человека
-        const std::string& getFirstName() const { return first_name; }//функция получения имени человека
-        const std::string& getSecondName() const { return second_name; }//функция получения отчества человека
-        void setLastName(const std::string&);//функция установки фамилии для человека
-        void setFirstame(const std::string&);//функция установки имени для человека
-        void setSecondName(const std::string&);//функция установки отчества для человека
+        /* Конструктор класса по умолчанию */
+        Person();
+
+        /* Конструктор класса с параметрами */
+        Person(long key, const std::string&, const std::string&, const std::string&);
+
+        /* Деструктор класса */
+        ~Person() {;}
+
+        /* Конструктор копирования */
+        Person(const Person&);//
+
+        /* Функция получения фамилии человека */
+        const std::string& getLastName() const { return last_name; }
+
+        /* Функция получения имени человека */
+        const std::string& getFirstName() const { return first_name; }
+
+        /* Функция получения отчества человека */
+        const std::string& getSecondName() const { return second_name; }
+
+        /* Функция установки фамилии для человека */
+        void setLastName(const std::string&);
+
+        /* Функция установки имени для человека */
+        void setFirstame(const std::string&);
+
+        /* Функция установки отчества для человека */
+        void setSecondName(const std::string&);
 };
 
 /*
@@ -60,9 +87,6 @@ Person::Person(const Person &person_to_copy)
     first_name = person_to_copy.first_name;
     second_name = person_to_copy.second_name;
 }
-
-/* Деструктор*/
-Person::~Person(){}
 
 /*
  * Функция для установки фамилии человеку
