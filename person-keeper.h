@@ -42,7 +42,7 @@ class PersonKeeper
         bool writePersons(std::ostream&);
 
         /* Метод, возвращаюющий стэк */
-        Stack <Person> * getStack() { return &stack ;}
+        Stack <Person>& getStack() { return stack ;}
 };
 
 /*
