@@ -7,6 +7,8 @@ TARGET = sppo-project
 CONFIG += console
 CONFIG -= app_bundle
 
+LIBS += -lstdc++fs
+
 TEMPLATE = app
 
 SOURCES += main.cpp
@@ -24,4 +26,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 HEADERS += \
     exception.h \
-    stack.h
+    stack.h \
+    person.h \
+    person-keeper.h
+
+DISTFILES += \
+    persons.txt \
+    file_to_copy.txt
