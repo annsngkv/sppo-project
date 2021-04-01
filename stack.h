@@ -9,21 +9,40 @@ template <class T>
 class Stack
 {
     private:
-            T** stack; //массив указателей на объекты
-            int max_size = 1024; //дефолтный размер стэка
-            int top_idx = 0; //индекс верхнего элемента массива
+        /* Массив указателей на объекты */
+        T** stack;
+
+        /* Дефолтный размер стэка */
+        int max_size = 1024;
+
+        /* Индекс верхнего элемента массива */
+        int top_idx = 0;
+
     public:
-        Stack(); //конструктор по умолчанию
-        Stack(int size); //конструктор с параметром
-        Stack(const Stack& stack_to_copy); //конструктор копирования
-        ~Stack(); //деструктор
-        void push(T* obj); //функция добавления объекта в стэк
-        T* pop(); //функция извлечения объекта из стэка
-        int getStackSize(); //функция получения размера стэка
+        /* Конструктор по умолчанию */
+        Stack();
+
+        /* Конструктор с параметром */
+        Stack(int size);
+
+        /* Конструктор копирования */
+        Stack(const Stack<T>& stack_to_copy);
+
+        /* Деструктор */
+        ~Stack();
+
+        /* Функция добавления объекта в стэк */
+        void push(T* obj);
+
+        /* Функция извлечения объекта из стэка */
+        T* pop();
+
+        /* Функция получения размера стэка */
+        int getStackSize();
 };
 
 /*
- * конструктор по умолчанию
+ * Конструктор по умолчанию
 */
 template <class T>
 Stack<T>::Stack()
@@ -32,9 +51,9 @@ Stack<T>::Stack()
 }
 
 /*
- * конструктор с пармаетром, который является размером стэка
+ * Конструктор с пармаетром, который является размером стэка
  *
- * argument: int
+ * arg int
 */
 template <class T>
 Stack<T>::Stack(int size)
@@ -44,21 +63,22 @@ Stack<T>::Stack(int size)
 }
 
 /*
- * конструктор копирования
+ * Конструктор копирования
 */
 template <class T>
-Stack<T>::Stack(const Stack& stack_to_copy)
+Stack<T>::Stack(const Stack<T> &stack_to_copy)
 {
     max_size = stack_to_copy.max_size;
+    top_idx = stack_to_copy.top_idx;
     stack = new T*[max_size];
 
-    for (int idx = 0; idx < max_size; idx ++) {
+    for (int idx = 0; idx < top_idx; idx ++) {
         stack[idx] = stack_to_copy.stack[idx];
     }
 }
 
 /*
- * деструктор класса
+ * Деструктор класса
 */
 template <class T>
 Stack<T>::~Stack()
@@ -68,10 +88,10 @@ Stack<T>::~Stack()
 }
 
 /*
- * функция добавления элемента в стэк, которая в случае добавления элемента в полный стэк
+ * Функция добавления элемента в стэк, которая в случае добавления элемента в полный стэк
  * будет генеририровать исключение типа EStackOverflow
  *
- * argument: T* (указатель на объект)
+ * arg T* (указатель на объект)
 */
 template <class T>
 void Stack<T>::push(T* obj)
@@ -81,14 +101,14 @@ void Stack<T>::push(T* obj)
     }
 
     stack[top_idx] = obj;
-    top_idx++;
+    top_idx++;   
 }
 
 /*
- * функция извлечения элемента из стэка, которая в случае попытки извлечь элемент из пустого стэка
+ * Функция извлечения элемента из стэка, которая в случае попытки извлечь элемент из пустого стэка
  * будет генеририровать исключение типа EStackEmpty
  *
- * return: T* (указатель на объект)
+ * return T* (указатель на объект)
 */
 template <class T>
 T* Stack<T>::pop()
@@ -103,9 +123,9 @@ T* Stack<T>::pop()
 }
 
 /*
- * функция, возвращающая размерность стэка
+ * Функция, возвращающая размерность стэка
  *
- * return: int
+ * return int
 */
 template <class T>
 int Stack<T>::getStackSize()
