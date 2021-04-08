@@ -38,15 +38,19 @@ bool PersonKeeper::readPersons(std::istream &stream)
             /* Обработка исключений */
             std::cout << "Конец файла!" << std::endl;
             stream.exceptions(s);
+            delete [] person_data;
 
             return false;
         } catch (const exc::EStackOverflow& e) { // Ловим все исключения типа EStackOverflow
             /* Обработка исключений */
             std::cout << e.what() << std::endl;
+            delete [] person_data;
 
             return false;
         }
     }
+
+    delete [] person_data;
 
     return true;
 }
@@ -84,6 +88,8 @@ bool PersonKeeper::writePersons(std::ostream &stream)
         } catch (const exc::EStackEmpty& e) { // Ловим все исключения типа EStackEmpty
             /* Обработка исключений */
             std::cout << e.what() << std::endl;
+            /*  Добавляем индикатор конца файла*/
+            stream << std::ios_base::eofbit;
 
             return false;
         }

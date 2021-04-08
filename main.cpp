@@ -52,5 +52,13 @@ int main(int argc, char *argv[])
     PersonKeeper::Instance().writePersons(file_to_copy);
     PersonKeeper::Instance().writePersons(file_to_copy);
 
+    /*
+     * Освобождем память для того, чтобы избежать утечки ресурсов
+    */
+    for (int idx = 0; idx < PersonKeeper::Instance().getStack().getStackSize(); idx++) {
+
+        delete PersonKeeper::Instance().getStack().pop();
+    }
+
     return a.exec();
 }
