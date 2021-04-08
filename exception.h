@@ -10,10 +10,10 @@ namespace exc {
 
         public:
             /* Конструктор с параметрами */
-            EStackException(const std::string& arg_message);
+            EStackException(const std::string& arg_message) { message = arg_message; }
 
             /* Конструктор копирования */
-            EStackException(const EStackException& arg);
+            EStackException(const EStackException& arg) {  message = arg.message; }
 
             /* Деструктор */
             ~EStackException() {;}
@@ -21,24 +21,6 @@ namespace exc {
             /* Функция вывода диагастического сообщения */
             const std::string& what() const { return message;}
     };
-
-    /*
-     * Конструктор с параметром класса EStackException
-     *
-     * arg const string&
-    */
-    EStackException::EStackException(const std::string& arg_message)
-    {
-        message = arg_message;
-    }
-
-    /*
-     * Конструктор копирования класса EStackException
-    */
-    EStackException::EStackException(const EStackException& arg)
-    {
-        message = arg.message;
-    }
 
     /*
      * Наследование от класса EStackException
