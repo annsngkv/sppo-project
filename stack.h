@@ -9,8 +9,8 @@ template <class T>
 class Stack
 {
     private:
-        /* Массив указателей на объекты */
-        T** stack;
+        /* Массив объектов */
+        T* stack;
 
         /* Дефолтный размер стэка */
         int max_size = 1024;
@@ -32,10 +32,10 @@ class Stack
         ~Stack();
 
         /* Функция добавления объекта в стэк */
-        void push(T* obj);
+        void push(T& obj);
 
         /* Функция извлечения объекта из стэка */
-        T* pop();
+        T& pop();
 
         /* Функция получения размера стэка */
         int getStackSize();
@@ -47,7 +47,7 @@ class Stack
 template <class T>
 Stack<T>::Stack()
 {
-    stack = new T*[max_size];
+    stack = new T[max_size];
 }
 
 /*
@@ -59,7 +59,7 @@ template <class T>
 Stack<T>::Stack(int size)
 {
     max_size = size;
-    stack = new T*[size];
+    stack = new T[size];
 }
 
 /*
@@ -70,7 +70,7 @@ Stack<T>::Stack(const Stack<T> &stack_to_copy)
 {
     max_size = stack_to_copy.max_size;
     top_idx = stack_to_copy.top_idx;
-    stack = new T*[max_size];
+    stack = new T[max_size];
 
     for (int idx = 0; idx < top_idx; idx ++) {
         stack[idx] = stack_to_copy.stack[idx];
@@ -91,10 +91,10 @@ Stack<T>::~Stack()
  * Функция добавления элемента в стэк, которая в случае добавления элемента в полный стэк
  * будет генеририровать исключение типа EStackOverflow
  *
- * arg T* (указатель на объект)
+ * arg T&(ссылка на объект)
 */
 template <class T>
-void Stack<T>::push(T* obj)
+void Stack<T>::push(T& obj)
 {
     if (top_idx >= max_size) {
         throw exc::EStackOverflow("Ошибка: cтек переполнен"); // генерируем исключение типа EStackOverflow, если стэк переполнен
@@ -108,10 +108,10 @@ void Stack<T>::push(T* obj)
  * Функция извлечения элемента из стэка, которая в случае попытки извлечь элемент из пустого стэка
  * будет генеририровать исключение типа EStackEmpty
  *
- * return T* (указатель на объект)
+ * return T& (ссылка на объект)
 */
 template <class T>
-T* Stack<T>::pop()
+T& Stack<T>::pop()
 {
      top_idx--;
 
